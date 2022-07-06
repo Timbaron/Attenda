@@ -46,9 +46,9 @@ export default function App() {
       </View>
       <View style={styles.content}>
         <View style={styles.contentHeader}>
-          <Text style={styles.ContentHeaderText}>Total Attendance: 8</Text>
+          <Text style={styles.ContentHeaderText}>Total Classes: 5</Text>
           <Button
-            title="Create"
+            title="Create class"
             color="grey"
             touchSoundDisabled={true}
           />
