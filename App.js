@@ -1,6 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Item from './Components/item'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './Components/HomeScreen';
+import ClassDetails from './Components/Class/details';
 
 export default function App() {
   const attends = [
@@ -35,40 +39,18 @@ export default function App() {
       LastUpdated: '6-July-2022'
     }
   ]
+  const Stack = createNativeStackNavigator();
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Image
-          style={styles.image}
-          source={require('./assets/head.jpeg')}
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: 'Welcome' }}
         />
-        <Text style={styles.info}>Welcome, Samuel</Text>
-      </View>
-      <View style={styles.content}>
-        <View style={styles.contentHeader}>
-          <Text style={styles.ContentHeaderText}>Total Classes: 5</Text>
-          <Button
-            title="Create class"
-            color="grey"
-            touchSoundDisabled={true}
-          />
-        </View>
-        <View style={styles.OldAttendance}>
-            <FlatList
-              data={attends}
-              renderItem={
-                ({item}) => (
-                  <Item item={item}/>
-                )
-              }
-              keyExtractor={(item) => item.id}
-              // extraData={selectedId}
-            />
-          
-        </View>
-      </View>
-      <StatusBar style="auto" />
-    </View>
+        <Stack.Screen name="Class" component={ClassDetails} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -79,8 +61,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   Listcontainer: {
-      flex: 1,
-      marginTop: StatusBar.currentHeight || 0,
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
   },
   header: {
     width: '90%',
