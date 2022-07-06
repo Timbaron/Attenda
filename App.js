@@ -8,41 +8,31 @@ export default function App() {
       id: 1,
       className: 'CMP 221',
       TotalStudents: 50,
-      TotalAttends: 37,
-      Remark: 'Fair',
-      Date: '6-July-2022'
+      LastUpdated: '6-July-2022'
     },
     {
       id: 2,
       className: 'CMP 224',
-      TotalStudents: 50,
-      TotalAttends: 37,
-      Remark: 'Fair',
-      Date: '6-July-2022'
+      TotalStudents: 45,
+      LastUpdated: '6-July-2022'
     },
     {
       id: 3,
       className: 'CMP 223',
-      TotalStudents: 50,
-      TotalAttends: 37,
-      Remark: 'Fair',
-      Date: '6-July-2022'
+      TotalStudents: 70,
+      LastUpdated: '6-July-2022'
     },
     {
       id: 4,
       className: 'CMP 421',
-      TotalStudents: 50,
-      TotalAttends: 37,
-      Remark: 'Fair',
-      Date: '6-July-2022'
+      TotalStudents: 30,
+      LastUpdated: '6-July-2022'
     },
     {
       id: 5,
       className: 'CMP 222',
       TotalStudents: 50,
-      TotalAttends: 37,
-      Remark: 'Fair',
-      Date: '6-July-2022'
+      LastUpdated: '6-July-2022'
     }
   ]
   return (
@@ -139,7 +129,7 @@ const styles = StyleSheet.create({
     fontSize: '15px'
   },
   OldAttendance: {
-    backgroundColor: 'purple',
+    backgroundColor: 'grey',
     width: '100%',
     height: '100%',
     flex: 1,
