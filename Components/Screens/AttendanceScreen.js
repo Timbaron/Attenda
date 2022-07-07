@@ -1,40 +1,49 @@
 import React from 'react'
 import { Button, FlatList, StyleSheet, Text, View } from 'react-native'
-import AttendanceList from '../Attendance/list'
 
-export default function ClassScreen({ navigation, route }) {
-  const Class = route.params
+export default function AttendanceScreen({ navigation, route }) {
+  const {ClassHeld, Class} = route.params
   const attends = [
     {
-      id: 1,
-      TotalAttendees: 24,
-      Remarks: "Good",
-      LastUpdated: '6-July-2022'
+      Date: '12-04-2021',
+      Total: 45,
+      Remarks: "Good"
     },
     {
-      id: 2,
-      TotalAttendees: 44,
-      Remarks: "Excellent",
-      LastUpdated: '6-July-2022'
+      Date: '12-04-2021',
+      Total: 20,
+      Remarks: "Bad"
     },
     {
-      id: 3,
-      TotalAttendees: 34,
-      Remarks: "Not Good",
-      LastUpdated: '6-July-2022'
+      Date: '12-04-2021',
+      Total: 46,
+      Remarks: "Good"
     },
     {
-      id: 4,
-      TotalAttendees: 26,
-      Remarks: "Good",
-      LastUpdated: '6-July-2022'
+      Date: '12-04-2021',
+      Total: 34,
+      Remarks: "Fair"
     },
     {
-      id: 5,
-      TotalAttendees: 44,
-      Remarks: "Excellent",
-      LastUpdated: '6-July-2022'
-    }
+      Date: '12-04-2021',
+      Total: 10,
+      Remarks: "Too Bad"
+    },
+    {
+      Date: '12-04-2021',
+      Total: 45,
+      Remarks: "Good"
+    },
+    {
+      Date: '12-04-2021',
+      Total: 50,
+      Remarks: "Excelent"
+    },
+    {
+      Date: '12-04-2021',
+      Total: 34,
+      Remarks: "Fair"
+    },
   ]
   return (
     <View style={styles.container}>
@@ -44,7 +53,7 @@ export default function ClassScreen({ navigation, route }) {
       </View>
       <View style={styles.content}>
         <View style={styles.contentHeader}>
-          <Text style={styles.ContentHeaderText}>Total: {attends.length}</Text>
+          <Text style={styles.ContentHeaderText}>Total: {ClassHeld.TotalAttendees}</Text>
           <Button
             title="Mark Attendance"
             color="grey"
@@ -52,17 +61,7 @@ export default function ClassScreen({ navigation, route }) {
           />
         </View>
         <View style={styles.OldAttendance}>
-          <FlatList
-            data={attends}
-            renderItem={
-              ({ item }) => (
-                <AttendanceList ClassHeld={item} Class={Class} navigation={navigation} />
-              )
-            }
-            keyExtractor={(item) => item.id}
-          // extraData={selectedId}
-          />
-
+          
         </View>
       </View>
     </View>

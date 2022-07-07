@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-export default function List({ item, navigation }) {
+export default function ClassList({ item, navigation }) {
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate('Class', item)}
+            onPress={() => navigation.navigate('ClassScreen', item)}
         >
             <View style={styles.item}>
                 <View style={styles.Left}>

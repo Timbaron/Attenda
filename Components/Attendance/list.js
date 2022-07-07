@@ -1,19 +1,22 @@
 import React from 'react'
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-export default function AttendanceList({ item, navigation }) {
+export default function AttendanceList({ ClassHeld, Class,  navigation }) {
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate('Class', item)}
+            onPress={() => navigation.navigate('Attendance', {
+                ClassHeld: ClassHeld,
+                Class: Class
+            })}
         >
             <View style={styles.item}>
                 <View style={styles.Left}>
-                    <Text style={styles.title}>TA: {item.Total}</Text>
+                    <Text style={styles.title}>TA: {ClassHeld.TotalAttendees}</Text>
 
                 </View>
                 <View style={styles.Right}>
-                    <Text style={styles.title}>Date: {item.Date}</Text>
-                    <Text style={styles.title}>Remarks: {item.Remarks}</Text>
+                    <Text style={styles.title}>Date: {ClassHeld.LastUpdated}</Text>
+                    <Text style={styles.title}>Remarks: {ClassHeld.Remarks}</Text>
                 </View>
             </View>
         </TouchableOpacity>

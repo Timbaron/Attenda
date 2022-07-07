@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import List from '../Class/list';
+import ClassList from '../Class/list';
 
 export default function HomeScreen({ navigation }) {
     const attends = [
@@ -8,30 +8,40 @@ export default function HomeScreen({ navigation }) {
             id: 1,
             className: 'CMP 221',
             TotalStudents: 50,
+            TotalAttendees: 24,
+            Remarks: "Good",
             LastUpdated: '6-July-2022'
         },
         {
             id: 2,
             className: 'CMP 224',
             TotalStudents: 45,
+            TotalAttendees: 44,
+            Remarks: "Excellent",
             LastUpdated: '6-July-2022'
         },
         {
             id: 3,
             className: 'CMP 223',
             TotalStudents: 70,
+            TotalAttendees: 34,
+            Remarks: "Not Good",
             LastUpdated: '6-July-2022'
         },
         {
             id: 4,
             className: 'CMP 421',
             TotalStudents: 30,
+            TotalAttendees: 26,
+            Remarks: "Good",
             LastUpdated: '6-July-2022'
         },
         {
             id: 5,
             className: 'CMP 222',
             TotalStudents: 50,
+            TotalAttendees: 44,
+            Remarks: "Excellent",
             LastUpdated: '6-July-2022'
         }
     ]
@@ -58,7 +68,7 @@ export default function HomeScreen({ navigation }) {
                         data={attends}
                         renderItem={
                             ({ item }) => (
-                                <List item={item} navigation={navigation} />
+                                <ClassList item={item} navigation={navigation} />
                             )
                         }
                         keyExtractor={(item) => item.id}

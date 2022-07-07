@@ -5,40 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './Components/Screens/HomeScreen';
 import ClassScreen from './Components/Screens/ClassScreen';
+import AttendanceScreen from './Components/Screens/AttendanceScreen';
 
 export default function App() {
-  const attends = [
-    {
-      id: 1,
-      className: 'CMP 221',
-      TotalStudents: 50,
-      LastUpdated: '6-July-2022'
-    },
-    {
-      id: 2,
-      className: 'CMP 224',
-      TotalStudents: 45,
-      LastUpdated: '6-July-2022'
-    },
-    {
-      id: 3,
-      className: 'CMP 223',
-      TotalStudents: 70,
-      LastUpdated: '6-July-2022'
-    },
-    {
-      id: 4,
-      className: 'CMP 421',
-      TotalStudents: 30,
-      LastUpdated: '6-July-2022'
-    },
-    {
-      id: 5,
-      className: 'CMP 222',
-      TotalStudents: 50,
-      LastUpdated: '6-July-2022'
-    }
-  ]
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
@@ -48,7 +17,8 @@ export default function App() {
           component={HomeScreen}
           options={{ title: 'Welcome' }}
         />
-        <Stack.Screen name="Class" component={ClassScreen} />
+        <Stack.Screen name="ClassScreen" component={ClassScreen} options={{ title: 'Class'}}/>
+        <Stack.Screen name="Attendance" component={AttendanceScreen} options={{ title: 'Attendance' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
