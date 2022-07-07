@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, FlatList, StyleSheet, Text, View } from 'react-native'
 import AttendanceList from '../Attendance/list'
 
-export default function ClassDetails({ navigation, route }) {
+export default function ClassScreen({ navigation, route }) {
   const Class = route.params
   const attends = [
     {

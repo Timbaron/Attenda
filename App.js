@@ -4,7 +4,7 @@ import Item from './Components/Class/list'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './Components/Screens/HomeScreen';
-import ClassDetails from './Components/Class/details';
+import ClassScreen from './Components/Screens/ClassScreen';
 
 export default function App() {
   const attends = [
@@ -48,7 +48,7 @@ export default function App() {
           component={HomeScreen}
           options={{ title: 'Welcome' }}
         />
-        <Stack.Screen name="Class" component={ClassDetails} />
+        <Stack.Screen name="Class" component={ClassScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

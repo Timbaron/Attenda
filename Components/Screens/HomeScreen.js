@@ -14,7 +14,7 @@ export default function HomeScreen({ navigation }) {
             id: 2,
             className: 'CMP 224',
             TotalStudents: 45,
-            astUpdated: '6-July-2022'
+            LastUpdated: '6-July-2022'
         },
         {
             id: 3,
