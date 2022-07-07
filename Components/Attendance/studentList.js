@@ -16,12 +16,12 @@ export default function StudentList({ student }) {
 const styles = StyleSheet.create({
   item: {
     backgroundColor: 'black',
-    margin: '5px',
-    width: '95%',
-    height: '100px',
-    borderRadius: '10px',
+    margin: 2,
+    width: 300,
+    height: 100,
+    borderRadius: 10,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
 
   },
   title: {
@@ -30,14 +30,16 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   Left: {
-    // border: '1px solid black',
-    width: '100%',
+    border: '1px solid black',
+    width: 300,
+    // height:200,
     justifyContent: 'space-around',
     alignItems: 'center',
   },
   Right: {
     // border: '1px solid black',
-    width: '60%',
+    width: 150,
+    justifyContent: 'space-around',
     alignItems: 'center'
   }
 

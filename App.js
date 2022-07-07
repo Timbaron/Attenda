@@ -41,20 +41,20 @@ const styles = StyleSheet.create({
     marginLeft: '5px',
     marginRight: '5px',
     backgroundColor: 'black',
-    borderRadius: '12px',
+    borderRadius: 12,
     alignItems: 'center',
     padding: '10px',
   },
   image: {
     width: 60,
     height: 60,
-    borderRadius: '50%'
+    borderRadius: 50
   },
   info: {
     padding: '10px',
     color: '#FFFFFF',
     fontFamily: 'Cursive',
-    fontSize: '20px'
+    fontSize: 20
   },
   content: {
     flex: 1,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     width: '90%',
     height: '100%',
-    borderRadius: '12px',
+    borderRadius: 12,
     alignItems: 'center'
   },
   contentHeader: {
@@ -74,11 +74,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'grey',
     margin: '5px',
     marginTop: '10px',
-    borderRadius: '10px',
+    borderRadius: 10,
   },
   ContentHeaderText: {
     fontFamily: 'Cursive',
-    fontSize: '15px'
+    fontSize: 15
   },
   OldAttendance: {
     backgroundColor: 'grey',
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: '10px',
     marginBottom: '4px',
-    borderRadius: '10px',
+    borderRadius: 10,
     // justifyContent: 'space-around',
   }
 });

@@ -23,12 +23,12 @@ export default function ClassList({ item, navigation }) {
 const styles = StyleSheet.create({
     item: {
         backgroundColor: 'black',
-        margin: '5px',
-        width: '95%',
-        height: '50px',
-        borderRadius: '10px',
+        margin: 2,
+        width: 300,
+        height: 70,
+        borderRadius: 10,
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
 
     },
     title: {
@@ -38,13 +38,14 @@ const styles = StyleSheet.create({
     },
     Left: {
         // border: '1px solid black',
-        width: '70px',
+        width: 100,
         justifyContent: 'space-around',
         alignItems: 'center',
     },
     Right: {
         // border: '1px solid black',
-        width: '60%',
+        width: 150,
+        justifyContent: 'space-around',
         alignItems: 'center'
     }
 

@@ -93,59 +93,59 @@ const styles = StyleSheet.create({
         marginTop: StatusBar.currentHeight || 0,
     },
     header: {
-        width: '90%',
-        height: '120px',
-        marginTop: '10px',
-        marginLeft: '5px',
-        marginRight: '5px',
+        width: 300,
+        height: 120,
+        marginTop: 10,
+        marginLeft: 5,
+        marginRight: 5,
         backgroundColor: 'black',
-        borderRadius: '12px',
+        borderRadius: 12,
         alignItems: 'center',
-        padding: '10px',
+        padding: 10,
     },
     image: {
         width: 60,
         height: 60,
-        borderRadius: '50%'
+        borderRadius: 15
     },
     info: {
-        padding: '10px',
+        padding: 10,
         color: '#FFFFFF',
         fontFamily: 'Cursive',
-        fontSize: '20px'
+        fontSize: 20
     },
     content: {
         flex: 1,
-        margin: '5px',
+        margin: 5,
         backgroundColor: 'black',
-        width: '90%',
-        height: '100%',
-        borderRadius: '12px',
+        width: 300,
+        height: 100,
+        borderRadius: 12,
         alignItems: 'center'
     },
     contentHeader: {
-        height: '70px',
-        width: '90%',
+        height: 70,
+        width: 280,
         justifyContent: 'space-around',
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: 'grey',
-        margin: '5px',
-        marginTop: '10px',
-        borderRadius: '10px',
+        margin: 5,
+        marginTop: 10,
+        borderRadius: 10,
     },
     ContentHeaderText: {
         fontFamily: 'Cursive',
-        fontSize: '15px'
+        fontSize: 15
     },
     OldClasses: {
         backgroundColor: 'grey',
-        width: '100%',
-        height: '100%',
+        width: 300,
+        height: 100,
         flex: 1,
-        margin: '10px',
-        marginBottom: '4px',
-        borderRadius: '10px',
-        // justifyContent: 'space-around',
+        margin: 10,
+        marginBottom: 4,
+        borderRadius: 10,
+        justifyContent: 'space-around',
     }
 });
