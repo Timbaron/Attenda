@@ -51,7 +51,7 @@ export default function AttendanceScreen({ navigation, route }) {
   const Students = [];
 
   function createRandomStudent() {
-    const faculty = ['SCI','SMS','HUM'];
+    const faculty = ['SCI', 'SMS', 'HUM'];
     return {
       userId: faker.datatype.uuid(),
       username: faker.internet.userName(),
@@ -88,7 +88,7 @@ export default function AttendanceScreen({ navigation, route }) {
                 <StudentList student={item} />
               )
             }
-          keyExtractor={(item) => item.userId}
+            keyExtractor={(item) => item.userId}
           />
         </View>
       </View>
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   info: {
     padding: 10,
     color: '#FFFFFF',
-    fontFamily: 'Cursive',
+    fontFamily: 'Roboto',
     fontSize: 20
   },
   content: {
@@ -141,13 +141,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   ContentHeaderText: {
-    fontFamily: 'Cursive',
+    fontFamily: 'Roboto',
     fontSize: 15
   },
   OldAttendance: {
     backgroundColor: 'grey',
-    width:  300,
-    height:  100,
+    width: 300,
+    height: 100,
     flex: 1,
     margin: 10,
     marginBottom: 4,

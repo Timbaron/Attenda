@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 15,
-        fontFamily: 'Cursive',
+        fontFamily: 'Roboto',
         color: '#FFFFFF',
     },
     Left: {

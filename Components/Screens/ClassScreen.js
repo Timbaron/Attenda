@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   info: {
     padding: 10,
     color: '#FFFFFF',
-    fontFamily: 'Cursive',
+    fontFamily: 'Roboto',
     fontSize: 20
   },
   content: {
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   ContentHeaderText: {
-    fontFamily: 'Cursive',
+    fontFamily: 'Roboto',
     fontSize: 15
   },
   OldAttendance: {

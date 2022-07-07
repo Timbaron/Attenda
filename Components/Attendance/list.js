@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-export default function AttendanceList({ ClassHeld, Class,  navigation }) {
+export default function AttendanceList({ ClassHeld, Class, navigation }) {
     return (
         <TouchableOpacity
             onPress={() => navigation.navigate('Attendance', {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 15,
-        fontFamily: 'Cursive',
+        fontFamily: 'Roboto',
         color: '#FFFFFF',
     },
     Left: {
