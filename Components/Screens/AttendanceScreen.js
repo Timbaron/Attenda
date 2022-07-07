@@ -1,8 +1,10 @@
 import React from 'react'
 import { Button, FlatList, StyleSheet, Text, View } from 'react-native'
+import { faker } from '@faker-js/faker';
+import StudentList from '../Attendance/studentList';
 
 export default function AttendanceScreen({ navigation, route }) {
-  const {ClassHeld, Class} = route.params
+  const { ClassHeld, Class } = route.params
   const attends = [
     {
       Date: '12-04-2021',
@@ -45,6 +47,24 @@ export default function AttendanceScreen({ navigation, route }) {
       Remarks: "Fair"
     },
   ]
+
+  const Students = [];
+
+  function createRandomStudent() {
+    const faculty = ['SCI','SMS','HUM'];
+    return {
+      userId: faker.datatype.uuid(),
+      username: faker.internet.userName(),
+      fullname: faker.name.firstName() + ' ' + faker.name.lastName(),
+      email: faker.internet.email(),
+      matricNumber: 'AUL/' + faculty[Math.floor(Math.random() * faculty.length)] + '/' + faker.datatype.number({ min: 35, max: 100 }) + '/00' + faker.datatype.number({ min: 111, max: 999 }),
+      password: faker.internet.password(),
+      registeredAt: faker.date.recent(1),
+    }
+  }
+  Array.from({ length: ClassHeld.TotalAttendees }).forEach(() => {
+    Students.push(createRandomStudent());
+  })
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -61,7 +81,15 @@ export default function AttendanceScreen({ navigation, route }) {
           />
         </View>
         <View style={styles.OldAttendance}>
-          
+          <FlatList
+            data={Students}
+            renderItem={
+              ({ item }) => (
+                <StudentList student={item} />
+              )
+            }
+          keyExtractor={(item) => item.userId}
+          />
         </View>
       </View>
     </View>
