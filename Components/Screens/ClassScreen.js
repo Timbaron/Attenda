@@ -54,7 +54,7 @@ export default function ClassScreen({ navigation, route }) {
       </View>
       <View style={styles.content}>
         <View style={styles.contentHeader}>
-          <Text style={styles.ContentHeaderText}>Total: 5</Text>
+          <Text style={styles.ContentHeaderText}>Total: {attends.length}</Text>
           <Button
             title="Mark Attendance"
             color="grey"
