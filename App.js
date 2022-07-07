@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Item from './Components/item'
+import Item from './Components/Class/list'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './Components/HomeScreen';
+import HomeScreen from './Components/Screens/HomeScreen';
 import ClassDetails from './Components/Class/details';
 
 export default function App() {

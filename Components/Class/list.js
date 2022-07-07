@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-export default function Item({ item, navigation }) {
+export default function List({ item, navigation }) {
     return (
         <TouchableOpacity
             onPress={() => navigation.navigate('Class', item)}

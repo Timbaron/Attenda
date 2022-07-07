@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Item from './item'
+import List from '../Class/list';
 
 export default function HomeScreen({ navigation }) {
     const attends = [
@@ -40,7 +40,7 @@ export default function HomeScreen({ navigation }) {
             <View style={styles.header}>
                 <Image
                     style={styles.image}
-                    source={require('../assets/head.jpeg')}
+                    source={require('../../assets/head.jpeg')}
                 />
                 <Text style={styles.info}>Welcome, Samuel</Text>
             </View>
@@ -58,7 +58,7 @@ export default function HomeScreen({ navigation }) {
                         data={attends}
                         renderItem={
                             ({ item }) => (
-                                <Item item={item} navigation={navigation} />
+                                <List item={item} navigation={navigation} />
                             )
                         }
                         keyExtractor={(item) => item.id}
