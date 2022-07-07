@@ -1,13 +1,24 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Button, FlatList, StyleSheet, Text, View } from 'react-native'
+import AttendanceList from '../Attendance/list'
 
 export default function ClassDetails({ navigation, route }) {
   const Class = route.params
   const attends = [
     {
       Date: '12-04-2021',
-      Total: 34,
-      Remarks: "Fair"
+      Total: 45,
+      Remarks: "Good"
+    },
+    {
+      Date: '12-04-2021',
+      Total: 20,
+      Remarks: "Bad"
+    },
+    {
+      Date: '12-04-2021',
+      Total: 46,
+      Remarks: "Good"
     },
     {
       Date: '12-04-2021',
@@ -16,28 +27,18 @@ export default function ClassDetails({ navigation, route }) {
     },
     {
       Date: '12-04-2021',
-      Total: 34,
-      Remarks: "Fair"
+      Total: 10,
+      Remarks: "Too Bad"
     },
     {
       Date: '12-04-2021',
-      Total: 34,
-      Remarks: "Fair"
+      Total: 45,
+      Remarks: "Good"
     },
     {
       Date: '12-04-2021',
-      Total: 34,
-      Remarks: "Fair"
-    },
-    {
-      Date: '12-04-2021',
-      Total: 34,
-      Remarks: "Fair"
-    },
-    {
-      Date: '12-04-2021',
-      Total: 34,
-      Remarks: "Fair"
+      Total: 50,
+      Remarks: "Excelent"
     },
     {
       Date: '12-04-2021',
@@ -50,6 +51,29 @@ export default function ClassDetails({ navigation, route }) {
       <View style={styles.header}>
         <Text style={styles.info}>{Class.className}</Text>
         <Text style={styles.info}>Total Students: {Class.TotalStudents}</Text>
+      </View>
+      <View style={styles.content}>
+        <View style={styles.contentHeader}>
+          <Text style={styles.ContentHeaderText}>Total: 5</Text>
+          <Button
+            title="Mark Attendance"
+            color="grey"
+            touchSoundDisabled={true}
+          />
+        </View>
+        <View style={styles.OldAttendance}>
+          <FlatList
+            data={attends}
+            renderItem={
+              ({ item }) => (
+                <AttendanceList item={item} navigation={navigation} />
+              )
+            }
+            keyExtractor={(item) => item.id}
+          // extraData={selectedId}
+          />
+
+        </View>
       </View>
     </View>
   )
@@ -79,4 +103,38 @@ const styles = StyleSheet.create({
     fontFamily: 'Cursive',
     fontSize: '20px'
   },
+  content: {
+    flex: 1,
+    margin: '5px',
+    backgroundColor: 'black',
+    width: '90%',
+    height: '100%',
+    borderRadius: '12px',
+    alignItems: 'center'
+  },
+  contentHeader: {
+    height: '70px',
+    width: '90%',
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'grey',
+    margin: '5px',
+    marginTop: '10px',
+    borderRadius: '10px',
+  },
+  ContentHeaderText: {
+    fontFamily: 'Cursive',
+    fontSize: '15px'
+  },
+  OldAttendance: {
+    backgroundColor: 'grey',
+    width: '100%',
+    height: '100%',
+    flex: 1,
+    margin: '10px',
+    marginBottom: '4px',
+    borderRadius: '10px',
+    // justifyContent: 'space-around',
+  }
 });

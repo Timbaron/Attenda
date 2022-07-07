@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Button, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Item from './item'
 
-export default function HomeScreen({navigation}) {
+export default function HomeScreen({ navigation }) {
     const attends = [
         {
             id: 1,
@@ -14,7 +14,7 @@ export default function HomeScreen({navigation}) {
             id: 2,
             className: 'CMP 224',
             TotalStudents: 45,
-            LastUpdated: '6-July-2022'
+            astUpdated: '6-July-2022'
         },
         {
             id: 3,
@@ -53,7 +53,7 @@ export default function HomeScreen({navigation}) {
                         touchSoundDisabled={true}
                     />
                 </View>
-                <View style={styles.OldAttendance}>
+                <View style={styles.OldClasses}>
                     <FlatList
                         data={attends}
                         renderItem={
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Cursive',
         fontSize: '15px'
     },
-    OldAttendance: {
+    OldClasses: {
         backgroundColor: 'grey',
         width: '100%',
         height: '100%',
