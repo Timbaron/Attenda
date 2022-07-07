@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ClassList from '../Class/list';
+import { Constants } from 'expo'
 
 export default function HomeScreen({ navigation }) {
     const attends = [
@@ -59,7 +60,7 @@ export default function HomeScreen({ navigation }) {
                     <Text style={styles.ContentHeaderText}>Total Classes: 5</Text>
                     <Button
                         title="Create class"
-                        color="grey"
+                        color="#EA256F"
                         touchSoundDisabled={true}
                     />
                 </View>
@@ -85,8 +86,9 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'grey',
+        backgroundColor: '#EA256F',
         alignItems: 'center',
+        marginTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight
     },
     Listcontainer: {
         flex: 1,
@@ -98,7 +100,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginLeft: 5,
         marginRight: 5,
-        backgroundColor: 'black',
+        backgroundColor: '#E8F0F7',
         borderRadius: 12,
         alignItems: 'center',
         padding: 10,
@@ -110,14 +112,14 @@ const styles = StyleSheet.create({
     },
     info: {
         padding: 10,
-        color: '#FFFFFF',
+        color: '#EA256F',
         fontFamily: 'Roboto',
         fontSize: 20
     },
     content: {
         flex: 1,
         margin: 5,
-        backgroundColor: 'black',
+        backgroundColor: '#D52366',
         width: 300,
         height: 100,
         borderRadius: 12,
@@ -129,17 +131,18 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: 'grey',
+        backgroundColor: 'white',
         margin: 5,
         marginTop: 10,
         borderRadius: 10,
     },
     ContentHeaderText: {
         fontFamily: 'Roboto',
-        fontSize: 15
+        fontSize: 15,
+        color: '#D52366'
     },
     OldClasses: {
-        backgroundColor: 'grey',
+        backgroundColor: '#FFFFFF',
         width: 300,
         height: 100,
         flex: 1,

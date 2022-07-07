@@ -47,7 +47,7 @@ export default function ClassScreen({ navigation, route }) {
           <Text style={styles.ContentHeaderText}>Total: {attends.length}</Text>
           <Button
             title="Mark Attendance"
-            color="grey"
+            color="#EA256F"
             touchSoundDisabled={true}
           />
         </View>
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'grey'
+    backgroundColor: '#EA256F'
   },
   header: {
     width: 300,
@@ -82,21 +82,21 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 5,
     marginRight: 5,
-    backgroundColor: 'black',
+    backgroundColor: '#E8F0F7',
     borderRadius: 12,
     alignItems: 'center',
     padding: 10,
   },
   info: {
     padding: 10,
-    color: '#FFFFFF',
+    color: '#EA256F',
     fontFamily: 'Roboto',
     fontSize: 20
   },
   content: {
     flex: 1,
     margin: 5,
-    backgroundColor: 'black',
+    backgroundColor: '#EA256F',
     width: 300,
     height: 100,
     borderRadius: 12,
@@ -108,17 +108,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'grey',
+    backgroundColor: '#FFFFFF',
     margin: 5,
     marginTop: 10,
     borderRadius: 10,
   },
   ContentHeaderText: {
     fontFamily: 'Roboto',
-    fontSize: 15
+    fontSize: 15,
+    color: '#EA256F'
   },
   OldAttendance: {
-    backgroundColor: 'grey',
+    backgroundColor: 'white',
     width: 300,
     height: 100,
     flex: 1,

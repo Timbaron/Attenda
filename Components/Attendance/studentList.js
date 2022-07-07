@@ -15,7 +15,7 @@ export default function StudentList({ student }) {
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: 'black',
+    backgroundColor: '#D52366',
     margin: 2,
     width: 300,
     height: 100,
@@ -30,14 +30,14 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   Left: {
-    border: '1px solid black',
+    // border: '1px solid white',
     width: 300,
     // height:200,
     justifyContent: 'space-around',
     alignItems: 'center',
   },
   Right: {
-    // border: '1px solid black',
+    // border: '1px solid white',
     width: 150,
     justifyContent: 'space-around',
     alignItems: 'center'

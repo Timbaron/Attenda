@@ -25,7 +25,7 @@ export default function AttendanceList({ ClassHeld, Class, navigation }) {
 
 const styles = StyleSheet.create({
     item: {
-        backgroundColor: 'black',
+        backgroundColor: '#EA256F',
         margin: 2,
         width: 300,
         height: 70,
@@ -40,13 +40,13 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
     },
     Left: {
-        // border: '1px solid black',
+        // border: '1px solid white',
         width: 100,
         justifyContent: 'space-around',
         alignItems: 'center',
     },
     Right: {
-        // border: '1px solid black',
+        // border: '1px solid white',
         width: 150,
         justifyContent: 'space-around',
         alignItems: 'center'
