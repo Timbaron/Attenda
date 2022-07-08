@@ -16,17 +16,26 @@ export default function HomeScreen({ navigation }) {
     const getUserCouses = async () => {
         try {
             const response = await fetch(
-                'https://127.0.0.1:8080/api/course'
+                'http://127.0.0.1:8080/api/course',{
+                    method: 'GET',
+                }
             );
             const json = await response.json();
             console.log(json.courses);
         } catch (error) {
             console.error(error);
         }
+        // let requestOptions = {
+        //     method: 'GET',
+            // headers: my Headers,
+            // body: 'raw'
+        // };
+
+        // fetch("http://127.0.0.1:8080/api/course", requestOptions)
     };
     useEffect(() => {
         setIsLoading(false)
-        // getUserCouses();
+        getUserCouses();
     })
     const attends = [
         {
