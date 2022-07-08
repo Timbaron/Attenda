@@ -2,12 +2,17 @@ import { StatusBar } from 'expo-status-bar';
 import { ActivityIndicator, Button, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ClassList from '../Class/list';
 import { useState, useEffect } from 'react';
-import { Constants } from 'expo'
+import Login from './login'
+import Register from './register';
+// import Modal from "react-native-modal";
 
 export default function HomeScreen({ navigation }) {
-    const [totalClasses,setTotalClasses] = useState(0)
-    const [classess,setClassess] = useState([]);
+    const [totalClasses, setTotalClasses] = useState(0)
+    const [classess, setClassess] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
+    const [isLoggedIn, setIsLoggedIn] = useState(true)
+    const [LoginmodalVisible, setLoginModalVisible] = useState(false);
+    const [RegistermodalVisible, setRegisterModalVisible] = useState(false);
     const getUserCouses = async () => {
         try {
             const response = await fetch(
@@ -19,7 +24,6 @@ export default function HomeScreen({ navigation }) {
             console.error(error);
         }
     };
-
     useEffect(() => {
         setIsLoading(false)
         // getUserCouses();
@@ -68,12 +72,34 @@ export default function HomeScreen({ navigation }) {
     ]
     return (
         <View style={styles.container}>
+            <Login LoginmodalVisible={LoginmodalVisible} setLoginModalVisible={setLoginModalVisible} />
+            <Register RegistermodalVisible={RegistermodalVisible} setRegisterModalVisible={setRegisterModalVisible} />
             <View style={styles.header}>
-                <Image
-                    style={styles.image}
-                    source={require('../../assets/head.jpeg')}
-                />
-                <Text style={styles.info}>Welcome, Samuel</Text>
+                {
+                    (isLoggedIn) ?
+                        <View style={styles.auth}>
+                            <Button
+                                title="Login"
+                                color="#EA256F"
+                                touchSoundDisabled={false}
+                                onPress={() => setLoginModalVisible(true)}
+                            />
+                            <Button
+                                title="Register"
+                                color="#EA256F"
+                                touchSoundDisabled={false}
+                                onPress={() => setRegisterModalVisible(true)}
+                            />
+                        </View>
+                        :
+                        <>
+                            <Image
+                                style={styles.image}
+                                source={require('../../assets/head.jpeg')}
+                            />
+                            <Text style={styles.info}>Welcome, Samuel</Text>
+                        </>
+                }
             </View>
             <View style={styles.content}>
                 <View style={styles.contentHeader}>
@@ -84,28 +110,28 @@ export default function HomeScreen({ navigation }) {
                         touchSoundDisabled={true}
                     />
                 </View>
-                {(isLoading) ? 
-                <View>
-                        <ActivityIndicator size="large" color="#E8F0F7" /> 
+                {(isLoading) ?
+                    <View>
+                        <ActivityIndicator size="large" color="#E8F0F7" />
                         <Text style={{ fontSize: 17, color: "#FFFFFF", fontFamily: 'Roboto' }}>Loading classes</Text>
-                </View>
-                    : 
-                <>
-                <View style={styles.OldClasses}>
-                    <FlatList
-                        data={attends}
-                        renderItem={
-                            ({ item }) => (
-                                <ClassList item={item} navigation={navigation} />
-                            )
-                        }
-                        keyExtractor={(item) => item.id}
-                    // extraData={selectedId}
-                    />
+                    </View>
+                    :
+                    <>
+                        <View style={styles.OldClasses}>
+                            <FlatList
+                                data={attends}
+                                renderItem={
+                                    ({ item }) => (
+                                        <ClassList item={item} navigation={navigation} />
+                                    )
+                                }
+                                keyExtractor={(item) => item.id}
+                            // extraData={selectedId}
+                            />
 
-                </View>
-                </>    
-            }
+                        </View>
+                    </>
+                }
             </View>
             <StatusBar style="auto" />
         </View>
@@ -178,5 +204,17 @@ const styles = StyleSheet.create({
         marginBottom: 4,
         borderRadius: 10,
         justifyContent: 'space-around',
+    },
+    auth: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        height: 100,
+        width: 200
+    },
+    btn1: {
+        margin:3,
+        padding:10,
+        width:300
     }
 });
