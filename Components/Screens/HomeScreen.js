@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Button, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ClassList from '../Class/list';
 import { useState, useEffect } from 'react';
 import { Constants } from 'expo'
@@ -7,11 +7,22 @@ import { Constants } from 'expo'
 export default function HomeScreen({ navigation }) {
     const [totalClasses,setTotalClasses] = useState(0)
     const [classess,setClassess] = useState([]);
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
+    const getUserCouses = async () => {
+        try {
+            const response = await fetch(
+                'https://127.0.0.1:8080/api/course'
+            );
+            const json = await response.json();
+            console.log(json.courses);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     useEffect(() => {
-        setIsLoading(true)
-        console.log('this is called')
+        setIsLoading(false)
+        // getUserCouses();
     })
     const attends = [
         {
@@ -73,9 +84,16 @@ export default function HomeScreen({ navigation }) {
                         touchSoundDisabled={true}
                     />
                 </View>
+                {(isLoading) ? 
+                <View>
+                        <ActivityIndicator size="large" color="#E8F0F7" /> 
+                        <Text style={{ fontSize: 17, color: "#FFFFFF", fontFamily: 'Roboto' }}>Loading classes</Text>
+                </View>
+                    : 
+                <>
                 <View style={styles.OldClasses}>
                     <FlatList
-                        data={classess}
+                        data={attends}
                         renderItem={
                             ({ item }) => (
                                 <ClassList item={item} navigation={navigation} />
@@ -86,6 +104,8 @@ export default function HomeScreen({ navigation }) {
                     />
 
                 </View>
+                </>    
+            }
             </View>
             <StatusBar style="auto" />
         </View>
