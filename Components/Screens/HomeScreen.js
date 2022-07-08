@@ -4,6 +4,7 @@ import ClassList from '../Class/list';
 import { useState, useEffect } from 'react';
 import Login from './login'
 import Register from './register';
+import CreateClass from '../Class/create';
 // import Modal from "react-native-modal";
 
 export default function HomeScreen({ navigation }) {
@@ -13,6 +14,7 @@ export default function HomeScreen({ navigation }) {
     const [isLoggedIn, setIsLoggedIn] = useState(true)
     const [LoginmodalVisible, setLoginModalVisible] = useState(false);
     const [RegistermodalVisible, setRegisterModalVisible] = useState(false);
+    const [ClassmodalVisible, setClassModalVisible] = useState(false);
     const getUserCouses = async () => {
         try {
             const response = await fetch(
@@ -35,7 +37,7 @@ export default function HomeScreen({ navigation }) {
     };
     useEffect(() => {
         setIsLoading(false)
-        getUserCouses();
+        // getUserCouses();
     })
     const attends = [
         {
@@ -83,6 +85,7 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.container}>
             <Login LoginmodalVisible={LoginmodalVisible} setLoginModalVisible={setLoginModalVisible} />
             <Register RegistermodalVisible={RegistermodalVisible} setRegisterModalVisible={setRegisterModalVisible} />
+            <CreateClass ClassmodalVisible={ClassmodalVisible} setClassModalVisible={setClassModalVisible} />
             <View style={styles.header}>
                 {
                     (isLoggedIn) ?
@@ -117,6 +120,7 @@ export default function HomeScreen({ navigation }) {
                         title="Create class"
                         color="#EA256F"
                         touchSoundDisabled={true}
+                        onPress={() => setClassModalVisible(true)}
                     />
                 </View>
                 {(isLoading) ?
