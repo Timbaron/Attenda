@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ClassList from '../Class/list';
+import { useState } from 'react';
 import { Constants } from 'expo'
 
 export default function HomeScreen({ navigation }) {
-    
+    const [totalClasses,setTotalClasses] = useState(0)
+    const [classess,setClassess] = useState([]);
     const attends = [
         {
             id: 1,
@@ -58,7 +60,7 @@ export default function HomeScreen({ navigation }) {
             </View>
             <View style={styles.content}>
                 <View style={styles.contentHeader}>
-                    <Text style={styles.ContentHeaderText}>Total Classes: 5</Text>
+                    <Text style={styles.ContentHeaderText}>Total Classes: {totalClasses}</Text>
                     <Button
                         title="Create class"
                         color="#EA256F"
@@ -67,7 +69,7 @@ export default function HomeScreen({ navigation }) {
                 </View>
                 <View style={styles.OldClasses}>
                     <FlatList
-                        data={attends}
+                        data={classess}
                         renderItem={
                             ({ item }) => (
                                 <ClassList item={item} navigation={navigation} />
