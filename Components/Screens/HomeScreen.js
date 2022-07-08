@@ -4,6 +4,7 @@ import ClassList from '../Class/list';
 import { Constants } from 'expo'
 
 export default function HomeScreen({ navigation }) {
+    
     const attends = [
         {
             id: 1,
@@ -88,7 +89,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#EA256F',
         alignItems: 'center',
-        marginTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight
     },
     Listcontainer: {
         flex: 1,
