@@ -1,12 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ClassList from '../Class/list';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Constants } from 'expo'
 
 export default function HomeScreen({ navigation }) {
     const [totalClasses,setTotalClasses] = useState(0)
     const [classess,setClassess] = useState([]);
+    const [isLoading, setIsLoading] = useState(false)
+
+    useEffect(() => {
+        setIsLoading(true)
+        console.log('this is called')
+    })
     const attends = [
         {
             id: 1,
