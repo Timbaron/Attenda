@@ -1,8 +1,12 @@
-import React from 'react'
-import { Button, FlatList, StyleSheet, Text, View } from 'react-native'
+import React, {useState, useEffect} from 'react'
+import { ActivityIndicator, Button, FlatList, StyleSheet, Text, View } from 'react-native'
 import AttendanceList from '../Attendance/list'
 
 export default function ClassScreen({ navigation, route }) {
+  const [totalAttendance, setTotalAttendance] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
+  const [attendance, setAttendance] = useState([])
+  // const [classes, setClassess] = useState()
   const Class = route.params
   const attends = [
     {
@@ -36,15 +40,43 @@ export default function ClassScreen({ navigation, route }) {
       LastUpdated: '6-July-2022'
     }
   ]
+  function requestHandler(result) {
+    console.log(result);
+    setTotalAttendance(result.attendance.length)
+    setAttendance(result.attendance)
+    // setClassess(result.courses)
+  }
+  const getCourseDetails = async () => {
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer 1|IgNqYHBHFu7sDBfcfSgFWFj00eatMvVoRLa5xe7S");
+
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+
+    fetch("https://attenda10.herokuapp.com/api/course/"+`${Class.id}`, requestOptions)
+      .then(response => response.json())
+      .then(result => requestHandler(result))
+      .catch(error => console.error('error', error));
+    setIsLoading(false)
+
+
+  };
+  useEffect(() => {
+    setIsLoading(true)
+    getCourseDetails();
+  },[])
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.info}>{Class.className}</Text>
-        <Text style={styles.info}>Total Students: {Class.TotalStudents}</Text>
+        <Text style={styles.info}>{Class.code}</Text>
+        <Text style={styles.info}>Total Students: {Class.total_students}</Text>
       </View>
       <View style={styles.content}>
         <View style={styles.contentHeader}>
-          <Text style={styles.ContentHeaderText}>Total: {attends.length}</Text>
+          <Text style={styles.ContentHeaderText}>Total: {totalAttendance}</Text>
           <Button
             title="Mark Attendance"
             color="#EA256F"
@@ -52,8 +84,18 @@ export default function ClassScreen({ navigation, route }) {
           />
         </View>
         <View style={styles.OldAttendance}>
+          {
+          (isLoading == true) ?
+          <>
+                <View>
+                  <ActivityIndicator size="large" color="#EA256F" />
+                  <Text style={{ fontSize: 17, color: "red", fontFamily: 'Roboto' }}>Loading classes</Text>
+                </View>
+          </>
+          :
+
           <FlatList
-            data={attends}
+                data={attendance}
             renderItem={
               ({ item }) => (
                 <AttendanceList ClassHeld={item} Class={Class} navigation={navigation} />
@@ -62,6 +104,7 @@ export default function ClassScreen({ navigation, route }) {
             keyExtractor={(item) => item.id}
           // extraData={selectedId}
           />
+           }
 
         </View>
       </View>

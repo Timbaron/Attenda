@@ -8,36 +8,39 @@ import CreateClass from '../Class/create';
 // import Modal from "react-native-modal";
 
 export default function HomeScreen({ navigation }) {
+    const baseUrl = Platform.OS === 'android' ? '192.168.4.28/api' : 'http://localhost/api';
     const [totalClasses, setTotalClasses] = useState(0)
     const [classess, setClassess] = useState([]);
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(true)
     const [LoginmodalVisible, setLoginModalVisible] = useState(false);
     const [RegistermodalVisible, setRegisterModalVisible] = useState(false);
     const [ClassmodalVisible, setClassModalVisible] = useState(false);
+    function requestHandler(result) {
+        setTotalClasses(result.total)
+        setClassess(result.courses)
+    }
     const getUserCouses = async () => {
-        try {
-            const response = await fetch(
-                'http://127.0.0.1:8080/api/course',{
-                    method: 'GET',
-                }
-            );
-            const json = await response.json();
-            console.log(json.courses);
-        } catch (error) {
-            console.error(error);
-        }
-        // let requestOptions = {
-        //     method: 'GET',
-            // headers: my Headers,
-            // body: 'raw'
-        // };
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer 1|IgNqYHBHFu7sDBfcfSgFWFj00eatMvVoRLa5xe7S");
 
-        // fetch("http://127.0.0.1:8080/api/course", requestOptions)
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch("https://attenda10.herokuapp.com/api/course", requestOptions)
+            .then(response => response.json())
+            .then(result => requestHandler(result))
+            .catch(error => console.log('error', error));
+        setIsLoading(false)
+
+
     };
     useEffect(() => {
-        setIsLoading(false)
-        // getUserCouses();
+        setIsLoading(true)
+        getUserCouses();
     })
     const attends = [
         {
@@ -132,7 +135,7 @@ export default function HomeScreen({ navigation }) {
                     <>
                         <View style={styles.OldClasses}>
                             <FlatList
-                                data={attends}
+                                data={classess}
                                 renderItem={
                                     ({ item }) => (
                                         <ClassList item={item} navigation={navigation} />
@@ -226,8 +229,8 @@ const styles = StyleSheet.create({
         width: 200
     },
     btn1: {
-        margin:3,
-        padding:10,
-        width:300
+        margin: 3,
+        padding: 10,
+        width: 300
     }
 });

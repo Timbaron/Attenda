@@ -2,6 +2,9 @@ import React from 'react'
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 export default function AttendanceList({ ClassHeld, Class, navigation }) {
+    var date = new Date(ClassHeld.created_at);
+    const attendees = JSON.parse(ClassHeld.attendees)
+    // const attendees = JSON.parse(ClassHeld.attendees)
     return (
         <TouchableOpacity
             onPress={() => navigation.navigate('Attendance', {
@@ -11,12 +14,12 @@ export default function AttendanceList({ ClassHeld, Class, navigation }) {
         >
             <View style={styles.item}>
                 <View style={styles.Left}>
-                    <Text style={styles.title}>TA: {ClassHeld.TotalAttendees}</Text>
+                    <Text style={styles.title}>TA: {attendees.length}</Text>
 
                 </View>
                 <View style={styles.Right}>
-                    <Text style={styles.title}>Date: {ClassHeld.LastUpdated}</Text>
-                    <Text style={styles.title}>Remarks: {ClassHeld.Remarks}</Text>
+                    <Text style={styles.title}>Date: {date.toDateString()}</Text>
+                    <Text style={styles.title}>ID: {ClassHeld.attendance_id}</Text>
                 </View>
             </View>
         </TouchableOpacity>

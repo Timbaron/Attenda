@@ -5,9 +5,9 @@ export default function StudentList({ student }) {
   return (
     <View style={styles.item}>
       <View style={styles.Left}>
-        <Text style={styles.title}>Name: {student.fullname}</Text>
-        <Text style={styles.title}>Matric Number: {student.matricNumber}</Text>
-        <Text style={styles.title}>Date: {student.registeredAt.toDateString()}</Text>
+        <Text style={styles.title}>Name: {student}</Text>
+        {/* <Text style={styles.title}>Matric Number: {student.matricNumber}</Text>
+        <Text style={styles.title}>Date: {student.registeredAt.toDateString()}</Text> */}
       </View>
     </View>
   )
