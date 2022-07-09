@@ -8,47 +8,13 @@ export default function ClassScreen({ navigation, route }) {
   const [attendance, setAttendance] = useState([])
   // const [classes, setClassess] = useState()
   const Class = route.params
-  const attends = [
-    {
-      id: 1,
-      TotalAttendees: 24,
-      Remarks: "Good",
-      LastUpdated: '6-July-2022'
-    },
-    {
-      id: 2,
-      TotalAttendees: 44,
-      Remarks: "Excellent",
-      LastUpdated: '6-July-2022'
-    },
-    {
-      id: 3,
-      TotalAttendees: 34,
-      Remarks: "Not Good",
-      LastUpdated: '6-July-2022'
-    },
-    {
-      id: 4,
-      TotalAttendees: 26,
-      Remarks: "Good",
-      LastUpdated: '6-July-2022'
-    },
-    {
-      id: 5,
-      TotalAttendees: 44,
-      Remarks: "Excellent",
-      LastUpdated: '6-July-2022'
-    }
-  ]
   function requestHandler(result) {
-    console.log(result);
     setTotalAttendance(result.attendance.length)
     setAttendance(result.attendance)
-    // setClassess(result.courses)
   }
   const getCourseDetails = async () => {
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer 1|IgNqYHBHFu7sDBfcfSgFWFj00eatMvVoRLa5xe7S");
+    myHeaders.append("Authorization", "Bearer " + `${API_token}`);
 
     var requestOptions = {
       method: 'GET',
@@ -56,7 +22,7 @@ export default function ClassScreen({ navigation, route }) {
       redirect: 'follow'
     };
 
-    fetch("https://attenda10.herokuapp.com/api/course/"+`${Class.id}`, requestOptions)
+    fetch(baseUrl +"course/"+`${Class.id}`, requestOptions)
       .then(response => response.json())
       .then(result => requestHandler(result))
       .catch(error => console.error('error', error));

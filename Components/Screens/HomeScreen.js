@@ -8,7 +8,7 @@ import CreateClass from '../Class/create';
 // import Modal from "react-native-modal";
 
 export default function HomeScreen({ navigation }) {
-    const baseUrl = Platform.OS === 'android' ? '192.168.4.28/api' : 'http://localhost/api';
+    // console.log(API_token)
     const [totalClasses, setTotalClasses] = useState(0)
     const [classess, setClassess] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
@@ -22,7 +22,7 @@ export default function HomeScreen({ navigation }) {
     }
     const getUserCouses = async () => {
         var myHeaders = new Headers();
-        myHeaders.append("Authorization", "Bearer 1|IgNqYHBHFu7sDBfcfSgFWFj00eatMvVoRLa5xe7S");
+        myHeaders.append("Authorization", "Bearer "+ `${API_token}`);
 
         var requestOptions = {
             method: 'GET',
@@ -30,7 +30,7 @@ export default function HomeScreen({ navigation }) {
             redirect: 'follow'
         };
 
-        fetch("https://attenda10.herokuapp.com/api/course", requestOptions)
+        fetch(baseUrl, requestOptions)
             .then(response => response.json())
             .then(result => requestHandler(result))
             .catch(error => console.log('error', error));
@@ -42,48 +42,6 @@ export default function HomeScreen({ navigation }) {
         setIsLoading(true)
         getUserCouses();
     })
-    const attends = [
-        {
-            id: 1,
-            className: 'CMP 221',
-            TotalStudents: 50,
-            TotalAttendees: 24,
-            Remarks: "Good",
-            LastUpdated: '6-July-2022'
-        },
-        {
-            id: 2,
-            className: 'CMP 224',
-            TotalStudents: 45,
-            TotalAttendees: 44,
-            Remarks: "Excellent",
-            LastUpdated: '6-July-2022'
-        },
-        {
-            id: 3,
-            className: 'CMP 223',
-            TotalStudents: 70,
-            TotalAttendees: 34,
-            Remarks: "Not Good",
-            LastUpdated: '6-July-2022'
-        },
-        {
-            id: 4,
-            className: 'CMP 421',
-            TotalStudents: 30,
-            TotalAttendees: 26,
-            Remarks: "Good",
-            LastUpdated: '6-July-2022'
-        },
-        {
-            id: 5,
-            className: 'CMP 222',
-            TotalStudents: 50,
-            TotalAttendees: 44,
-            Remarks: "Excellent",
-            LastUpdated: '6-July-2022'
-        }
-    ]
     return (
         <View style={styles.container}>
             <Login LoginmodalVisible={LoginmodalVisible} setLoginModalVisible={setLoginModalVisible} />

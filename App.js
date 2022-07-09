@@ -7,6 +7,9 @@ import { StatusBar } from 'react-native';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
+  global.baseUrl = "https://attenda10.herokuapp.com/api/";
+  const token ="1|IgNqYHBHFu7sDBfcfSgFWFj00eatMvVoRLa5xe7S"
+  global.API_token = token;
   return (
     <NavigationContainer>
       <Stack.Navigator
