@@ -30,10 +30,10 @@ export default function HomeScreen({ navigation }) {
             redirect: 'follow'
         };
 
-        fetch(baseUrl, requestOptions)
+        fetch(baseUrl + 'course', requestOptions)
             .then(response => response.json())
             .then(result => requestHandler(result))
-            .catch(error => console.log('error', error));
+            .catch(error => console.error('error', error));
         setIsLoading(false)
 
 
@@ -41,7 +41,7 @@ export default function HomeScreen({ navigation }) {
     useEffect(() => {
         setIsLoading(true)
         getUserCouses();
-    })
+    },[])
     return (
         <View style={styles.container}>
             <Login LoginmodalVisible={LoginmodalVisible} setLoginModalVisible={setLoginModalVisible} />
