@@ -11,7 +11,7 @@ export default function HomeScreen({ navigation }) {
     // console.log(API_token)
     const [totalClasses, setTotalClasses] = useState(0)
     const [classess, setClassess] = useState([]);
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const [isLoggedIn, setIsLoggedIn] = useState(true)
     const [LoginmodalVisible, setLoginModalVisible] = useState(false);
     const [RegistermodalVisible, setRegisterModalVisible] = useState(false);
