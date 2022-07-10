@@ -1,13 +1,51 @@
-import { View, Text, Modal, StyleSheet, TouchableOpacity, Alert, SafeAreaView, TextInput } from 'react-native'
+import { View, Text, Modal, StyleSheet, TouchableOpacity, Alert, SafeAreaView, TextInput, ToastAndroid } from 'react-native'
 import React from 'react'
-import {useState} from 'react'
+import { useState } from 'react'
 
 export default function login({ LoginmodalVisible, setLoginModalVisible }) {
-    const[email, onChangeEmail] = useState('');
+    const [email, onChangeEmail] = useState('');
     const [password, onChangePassword] = useState();
 
     function closeModealHandler() {
         setLoginModalVisible(false)
+    }
+
+    function resultHandler(result) {
+        if(result.errors){
+            ToastAndroid.showWithGravity(
+                result.errors[0],
+                ToastAndroid.SHORT,
+                ToastAndroid.CENTER
+            );
+        }
+        if(result.status == 'error'){
+            ToastAndroid.showWithGravity(
+                result.message,
+                ToastAndroid.SHORT,
+                ToastAndroid.CENTER
+            );
+        }
+        if(result.status == 'success'){
+            console.log(result.token)
+        }
+    }
+
+    function loginHandler() {
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer " + `${API_token}`);
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch(baseUrl + "login?email=" + `${email}` + "&password=" + `${password}`, requestOptions)
+            .then(response => response.json())
+            .then(result => resultHandler(result))
+            .catch(error => console.log('error', error));
+
+
     }
     return (
         <View>
@@ -41,14 +79,8 @@ export default function login({ LoginmodalVisible, setLoginModalVisible }) {
                         </View>
                         {/* <Button title="Close" onPress={closeModealHandler} /> */}
                         <View style={styles.btnGroup}>
-                            <TouchableOpacity onPress={() => Alert.alert('Login Success', 'You have successfully signed in', [
-                                {
-                                    text: "Sure boss",
-                                    onPress: () => closeModealHandler(),
-                                    style: "cancel"
-                                }
-                            ])}
-                            style={styles.btn}>
+                            <TouchableOpacity onPress={loginHandler}
+                                style={styles.btn}>
                                 <Text style={styles.btnText}>Login</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={closeModealHandler} style={styles.btn}>
@@ -124,8 +156,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#EA256F',
         borderRadius: 10,
     },
-    btnGroup :{
-        flex:1,
+    btnGroup: {
+        flex: 1,
         flexDirection: 'row',
         backgroundColor: 'white',
         width: 250,
