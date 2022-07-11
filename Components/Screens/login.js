@@ -1,36 +1,54 @@
-import { View, Text, Modal, StyleSheet, TouchableOpacity, Alert, SafeAreaView, TextInput, ToastAndroid } from 'react-native'
+import { View, Text, Modal, StyleSheet, TouchableOpacity, Alert, SafeAreaView, TextInput, ToastAndroid, ActivityIndicator } from 'react-native'
 import React from 'react'
 import { useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function login({ LoginmodalVisible, setLoginModalVisible }) {
     const [email, onChangeEmail] = useState('');
     const [password, onChangePassword] = useState();
+    const [isLoading, setIsLoading] = useState(false)
 
     function closeModealHandler() {
         setLoginModalVisible(false)
     }
+    const storeToken = async (result) => {
+        try {
+            await AsyncStorage.setItem('@token', result.token)
+            ToastAndroid.showWithGravity(
+                result.message,
+                ToastAndroid.SHORT,
+                ToastAndroid.CENTER
+            );
+            setLoginModalVisible(false)
+        } catch (error) {
+            // saving error
+            console.error(error)
+        }
+    }
 
     function resultHandler(result) {
-        if(result.errors){
+        setIsLoading(false)
+        if (result.errors) {
             ToastAndroid.showWithGravity(
                 result.errors[0],
                 ToastAndroid.SHORT,
                 ToastAndroid.CENTER
             );
         }
-        if(result.status == 'error'){
+        if (result.status == 'error') {
             ToastAndroid.showWithGravity(
                 result.message,
                 ToastAndroid.SHORT,
                 ToastAndroid.CENTER
             );
         }
-        if(result.status == 'success'){
-            console.log(result.token)
+        if (result.status == 'success') {            
+            storeToken(result)
         }
     }
 
     function loginHandler() {
+        setIsLoading(true)
         var myHeaders = new Headers();
         myHeaders.append("Authorization", "Bearer " + `${API_token}`);
 
@@ -77,6 +95,13 @@ export default function login({ LoginmodalVisible, setLoginModalVisible }) {
                                 />
                             </SafeAreaView>
                         </View>
+                        {(isLoading) ? (
+                            <>
+                            <ActivityIndicator size="large" color="#00ff00" />
+                            <Text>Attempting Login......</Text>
+                            </>
+                        )
+                         : <Text></Text>}
                         {/* <Button title="Close" onPress={closeModealHandler} /> */}
                         <View style={styles.btnGroup}>
                             <TouchableOpacity onPress={loginHandler}
