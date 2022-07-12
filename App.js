@@ -4,6 +4,7 @@ import HomeScreen from './Components/Screens/HomeScreen';
 import ClassScreen from './Components/Screens/ClassScreen';
 import AttendanceScreen from './Components/Screens/AttendanceScreen';
 import { StatusBar } from 'react-native';
+import Login from './Components/Screens/login';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -29,6 +30,11 @@ export default function App() {
         />
         <Stack.Screen name="ClassScreen" component={ClassScreen} options={{ title: 'Class'}}/>
         <Stack.Screen name="Attendance" component={AttendanceScreen} options={{ title: 'Attendance' }} />
+        <Stack.Screen name="Login" component={Login} options={{ title: 'Login' }}
+          setOptions={{
+            headerShown:false
+          }}
+        />
       </Stack.Navigator>
       {/* <StatusBar
         animated={true}

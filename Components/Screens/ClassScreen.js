@@ -7,14 +7,14 @@ export default function ClassScreen({ navigation, route }) {
   const [isLoading, setIsLoading] = useState(true)
   const [attendance, setAttendance] = useState([])
   // const [classes, setClassess] = useState()
-  const Class = route.params
+  const { Class,token} = route.params
   function requestHandler(result) {
     setTotalAttendance(result.attendance.length)
     setAttendance(result.attendance)
   }
   const getCourseDetails = async () => {
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer " + `${API_token}`);
+    myHeaders.append("Authorization", "Bearer " + `${token}`);
 
     var requestOptions = {
       method: 'GET',
@@ -22,7 +22,7 @@ export default function ClassScreen({ navigation, route }) {
       redirect: 'follow'
     };
 
-    fetch(baseUrl +"course/"+`${Class.id}`, requestOptions)
+    fetch(baseUrl + "course/" + `${Class.id}`, requestOptions)
       .then(response => response.json())
       .then(result => requestHandler(result))
       .catch(error => console.error('error', error));
@@ -64,7 +64,7 @@ export default function ClassScreen({ navigation, route }) {
                 data={attendance}
             renderItem={
               ({ item }) => (
-                <AttendanceList ClassHeld={item} Class={Class} navigation={navigation} />
+                <AttendanceList ClassHeld={item} token={token} Class={Class} navigation={navigation} />
               )
             }
             keyExtractor={(item) => item.id}

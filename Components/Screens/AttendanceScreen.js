@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker';
 import StudentList from '../Attendance/studentList';
 
 export default function AttendanceScreen({ navigation, route }) {
-  const { ClassHeld, Class,total } = route.params
+  const { ClassHeld, Class} = route.params
   const attendees = JSON.parse(ClassHeld.attendees)
   return (
     <View style={styles.container}>

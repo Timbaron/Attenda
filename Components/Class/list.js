@@ -1,19 +1,22 @@
 import React from 'react'
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-export default function ClassList({ item, navigation }) {
-    var date = new Date(item.created_at);
+export default function ClassList({ token, Class, navigation }) {
+    var date = new Date(Class.created_at);
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate('ClassScreen', item)}
+            onPress={() => navigation.navigate('ClassScreen', {
+                Class: Class,
+                token: token
+            })}
         >
             <View style={styles.item}>
                 <View style={styles.Left}>
-                    <Text style={styles.title}>{item.code}</Text>
+                    <Text style={styles.title}>{Class.code}</Text>
 
                 </View>
                 <View style={styles.Right}>
-                    <Text style={styles.title}>Total Students: {item.total_students}</Text>
+                    <Text style={styles.title}>Total Students: {Class.total_students}</Text>
                     <Text style={styles.title}>{date.toDateString()}</Text>
                 </View>
             </View>
