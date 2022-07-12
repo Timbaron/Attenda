@@ -1,13 +1,50 @@
-import { View, Text, Modal, StyleSheet, Pressable, Button, SafeAreaView, TextInput, TouchableOpacity, Alert } from 'react-native'
+import { View, Text, Modal, StyleSheet, DevSettings, SafeAreaView, TextInput, TouchableOpacity, Alert, ActivityIndicator, ToastAndroid } from 'react-native'
 import React, { useState } from 'react'
 
-export default function CreateClass({ ClassmodalVisible, setClassModalVisible }) {
+export default function CreateClass({ user, token, ClassmodalVisible, setClassModalVisible }) {
     const [title, onChangeTitle] = useState('');
     const [code, onChangeCode] = useState('');
     const [totalStudents, onChangeTotalStudents] = useState('');
+    const [isLoading, setIsLoading] = useState(false)
 
     function closeModalHandler() {
         setClassModalVisible(false)
+    }
+    function requestHandler(result) {
+        if (result.status == 'error') {
+            console.log(result)
+            ToastAndroid.showWithGravity(
+                result.message[0],
+                ToastAndroid.LONG,
+                ToastAndroid.CENTER
+            );
+        }
+        if (result.status == 'success') {
+            ToastAndroid.showWithGravity(
+                result.message,
+                ToastAndroid.SHORT,
+                ToastAndroid.CENTER
+            );
+            DevSettings.reload()
+
+        }
+    }
+    const createClassHandler = async () => {
+        setIsLoading(true)
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer " + `${token}`);
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        await fetch(baseUrl + `course/create?title=${title}&code=${code}&total_students=${totalStudents}&lecturer=${user.id}`, requestOptions)
+            .then(response => response.json())
+            .then(result => requestHandler(result))
+            .catch(error => console.error('error', error));
+        setIsLoading(false)
     }
     return (
         <View>
@@ -42,23 +79,23 @@ export default function CreateClass({ ClassmodalVisible, setClassModalVisible })
                                     value={totalStudents}
                                     placeholder="Total number of students"
                                     keyboardType='numeric'
-                                />                                
+                                />
                             </SafeAreaView>
                         </View>
+                        {(isLoading) && (
+                            <>
+                                <ActivityIndicator size="large" color="#00ff00" />
+                                <Text>Creating your class, Hold on....</Text>
+                            </>
+                        )}
                         {/* <Button title="Close" onPress={closeModealHandler} /> */}
                         <View style={styles.btnGroup}>
-                            <TouchableOpacity onPress={() => Alert.alert('Login Success', 'You have successfully signed in', [
-                                {
-                                    text: "Sure boss",
-                                    onPress: () => closeModalHandler(),
-                                    style: "cancel"
-                                }
-                            ])}
-                                style={styles.btn}>
-                                <Text style={styles.btnText}>Create</Text>
-                            </TouchableOpacity>
                             <TouchableOpacity onPress={closeModalHandler} style={styles.btn}>
                                 <Text style={styles.btnText}>Close</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => createClassHandler()}
+                                style={styles.btn}>
+                                <Text style={styles.btnText}>Create</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -82,7 +119,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         padding: 35,
         width: 300,
-        height: 400,
+        height: 500,
         alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {

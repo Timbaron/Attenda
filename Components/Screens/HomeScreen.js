@@ -104,7 +104,7 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.container}>
             {/* <Login LoginmodalVisible={LoginmodalVisible} setLoginModalVisible={setLoginModalVisible} /> */}
             <Register RegistermodalVisible={RegistermodalVisible} setRegisterModalVisible={setRegisterModalVisible} />
-            <CreateClass ClassmodalVisible={ClassmodalVisible} setClassModalVisible={setClassModalVisible} />
+            <CreateClass user={user} token={loginToken} ClassmodalVisible={ClassmodalVisible} setClassModalVisible={setClassModalVisible} />
             <View style={styles.header}>
                 {
                     (isLoggedIn == false) ?
