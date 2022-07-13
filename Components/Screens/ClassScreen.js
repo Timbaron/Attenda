@@ -44,7 +44,7 @@ export default function ClassScreen({ navigation, route }) {
         <View style={styles.contentHeader}>
           <Text style={styles.ContentHeaderText}>Total: {totalAttendance}</Text>
           <Button
-            title="Mark Attendance"
+            title="Create Attendance"
             color="#EA256F"
             touchSoundDisabled={true}
           />
