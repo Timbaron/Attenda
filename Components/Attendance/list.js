@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-export default function AttendanceList({ ClassHeld, Class, navigation }) {
+export default function AttendanceList({ ClassHeld, token, Class, navigation, makeRequest, setMakeRequest }) {
     var date = new Date(ClassHeld.created_at);
     const attendees = JSON.parse(ClassHeld.attendees)
     // const attendees = JSON.parse(ClassHeld.attendees)
@@ -10,6 +10,10 @@ export default function AttendanceList({ ClassHeld, Class, navigation }) {
             onPress={() => navigation.navigate('Attendance', {
                 ClassHeld: ClassHeld,
                 Class: Class,
+                attendanceId: ClassHeld.attendance_id,
+                token: token,
+                makeRequest, 
+                setMakeRequest
             })}
         >
             <View style={styles.item}>

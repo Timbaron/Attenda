@@ -74,7 +74,7 @@ export default function ClassScreen({ navigation, route }) {
                 data={attendance}
             renderItem={
               ({ item }) => (
-                <AttendanceList ClassHeld={item} token={token} Class={Class} navigation={navigation} />
+                <AttendanceList ClassHeld={item} token={token} Class={Class} navigation={navigation} makeRequest={makeRequest} setMakeRequest={setMakeRequest} />
               )
             }
             keyExtractor={(item) => item.id}

@@ -30,7 +30,6 @@ export default function Login({ navigation }) {
     }
 
     function resultHandler(result) {
-        console.log(result)
         setIsLoading(false)
         if (result.errors) {
             ToastAndroid.showWithGravity(
