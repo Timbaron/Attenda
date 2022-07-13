@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { ActivityIndicator, Button, FlatList, StyleSheet, Text, View } from 'react-native'
 import CreateAttendance from '../Attendance/create'
 import AttendanceList from '../Attendance/list'
+import { useIsFocused } from '@react-navigation/core';
+
 
 export default function ClassScreen({ navigation, route }) {
   const [totalAttendance, setTotalAttendance] = useState(0)
@@ -9,6 +11,7 @@ export default function ClassScreen({ navigation, route }) {
   const [attendance, setAttendance] = useState([])
   const [makeRequest, setMakeRequest] = useState(false)
   const [AttendancemodalVisible, setAttendanceModalVisible] = useState(false)
+  const isFocused = useIsFocused();
   // const [classes, setClassess] = useState()
   const { Class,token, user} = route.params
   function requestHandler(result) {
@@ -41,6 +44,12 @@ export default function ClassScreen({ navigation, route }) {
     setIsLoading(true)
     getCourseDetails();
   }, [makeRequest])
+  useEffect(() => {
+    if(isFocused == true){ //called whenever isFocused changes
+      setIsLoading(true)
+      getCourseDetails();
+    }
+  }, [isFocused]);
 
   return (
     <View style={styles.container}>
@@ -74,7 +83,7 @@ export default function ClassScreen({ navigation, route }) {
                 data={attendance}
             renderItem={
               ({ item }) => (
-                <AttendanceList ClassHeld={item} token={token} Class={Class} navigation={navigation} makeRequest={makeRequest} setMakeRequest={setMakeRequest} />
+                <AttendanceList ClassHeld={item} token={token} Class={Class} navigation={navigation} />
               )
             }
             keyExtractor={(item) => item.id}

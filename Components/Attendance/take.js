@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Button, TextInput, SafeAreaView, TouchableOpaci
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 export default function Take({ navigation, route }) {
-  const { attendanceId, token, makeRequest, setMakeRequest} = route.params
+  const { attendanceId, token} = route.params
   const [student, onChangeStudent] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
@@ -22,7 +22,7 @@ export default function Take({ navigation, route }) {
         ToastAndroid.LONG,
         ToastAndroid.CENTER
       );
-      setMakeRequest(!makeRequest)
+      // setMakeRequest(!makeRequest)
       navigation.pop(2)
     }
   }
@@ -46,7 +46,7 @@ export default function Take({ navigation, route }) {
         redirect: 'follow'
       };
 
-      await fetch(baseUrl + "attendance/mark?attendance_id=" + `${attendanceId}` + "&student_id=" + `${student}`, requestOptions)
+      fetch(baseUrl + "attendance/mark?attendance_id=" + `${attendanceId}` + "&student_id=" + `${student}`, requestOptions)
         .then(response => response.json())
         .then(result => resultHandler(result))
         .catch(error => console.log('error', error));

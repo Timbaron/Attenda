@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker';
 import StudentList from '../Attendance/studentList';
 
 export default function AttendanceScreen({ navigation, route }) {
-  const { ClassHeld, Class, attendanceId, token, makeRequest, setMakeRequest} = route.params
+  const { ClassHeld, Class, attendanceId, token} = route.params
   const attendees = JSON.parse(ClassHeld.attendees)
   return (
     <View style={styles.container}>
@@ -22,8 +22,6 @@ export default function AttendanceScreen({ navigation, route }) {
             onPress={() => navigation.navigate('TakeAttendance', {
               attendanceId: attendanceId,
               token: token,
-              makeRequest, 
-              setMakeRequest
             })}
             // {console.log(attendanceId, token)}
           />

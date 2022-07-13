@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-export default function AttendanceList({ ClassHeld, token, Class, navigation, makeRequest, setMakeRequest }) {
+export default function AttendanceList({ ClassHeld, token, Class, navigation }) {
     var date = new Date(ClassHeld.created_at);
     const attendees = JSON.parse(ClassHeld.attendees)
     // const attendees = JSON.parse(ClassHeld.attendees)
@@ -12,8 +12,6 @@ export default function AttendanceList({ ClassHeld, token, Class, navigation, ma
                 Class: Class,
                 attendanceId: ClassHeld.attendance_id,
                 token: token,
-                makeRequest, 
-                setMakeRequest
             })}
         >
             <View style={styles.item}>
@@ -23,7 +21,7 @@ export default function AttendanceList({ ClassHeld, token, Class, navigation, ma
                 </View>
                 <View style={styles.Right}>
                     <Text style={styles.title}>Date: {date.toDateString()}</Text>
-                    <Text style={styles.title}>ID: {ClassHeld.attendance_id}</Text>
+                    {/* <Text style={styles.title}>ID: {ClassHeld.attendance_id}</Text> */}
                 </View>
             </View>
         </TouchableOpacity>
