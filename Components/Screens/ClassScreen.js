@@ -1,13 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import { ActivityIndicator, Button, FlatList, StyleSheet, Text, View } from 'react-native'
+import CreateAttendance from '../Attendance/create'
 import AttendanceList from '../Attendance/list'
 
 export default function ClassScreen({ navigation, route }) {
   const [totalAttendance, setTotalAttendance] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [attendance, setAttendance] = useState([])
+  const [makeRequest, setMakeRequest] = useState(false)
+  const [AttendancemodalVisible, setAttendanceModalVisible] = useState(false)
   // const [classes, setClassess] = useState()
-  const { Class,token} = route.params
+  const { Class,token, user} = route.params
   function requestHandler(result) {
     setTotalAttendance(result.attendance.length)
     setAttendance(result.attendance)
@@ -34,8 +37,14 @@ export default function ClassScreen({ navigation, route }) {
     setIsLoading(true)
     getCourseDetails();
   },[])
+  useEffect(() => {
+    setIsLoading(true)
+    getCourseDetails();
+  }, [makeRequest])
+
   return (
     <View style={styles.container}>
+      <CreateAttendance user={user} courseid={Class.course_id} makeRequest={makeRequest} setMakeRequest={setMakeRequest} token={token} AttendancemodalVisible={AttendancemodalVisible} setAttendanceModalVisible={setAttendanceModalVisible} />
       <View style={styles.header}>
         <Text style={styles.info}>{Class.code}</Text>
         <Text style={styles.info}>Total Students: {Class.total_students}</Text>
@@ -47,6 +56,7 @@ export default function ClassScreen({ navigation, route }) {
             title="Create Attendance"
             color="#EA256F"
             touchSoundDisabled={true}
+            onPress={() => setAttendanceModalVisible(true)}
           />
         </View>
         <View style={styles.OldAttendance}>

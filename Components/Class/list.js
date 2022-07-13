@@ -1,13 +1,14 @@
 import React from 'react'
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-export default function ClassList({ token, Class, navigation }) {
+export default function ClassList({user, token, Class, navigation }) {
     var date = new Date(Class.created_at);
     return (
         <TouchableOpacity
             onPress={() => navigation.navigate('ClassScreen', {
                 Class: Class,
-                token: token
+                token: token,
+                user, user
             })}
         >
             <View style={styles.item}>

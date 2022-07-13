@@ -168,7 +168,7 @@ export default function HomeScreen({ navigation }) {
                                 data={classess}
                                 renderItem={
                                     ({ item }) => (
-                                        <ClassList token={loginToken} Class={item} navigation={navigation} />
+                                        <ClassList user={user} token={loginToken} Class={item} navigation={navigation} />
                                     )
                                 }
                                 keyExtractor={(item) => item.id}
