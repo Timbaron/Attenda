@@ -1,7 +1,7 @@
 import { View, Text, Modal, StyleSheet, DevSettings, SafeAreaView, TextInput, TouchableOpacity, Alert, ActivityIndicator, ToastAndroid } from 'react-native'
 import React, { useState } from 'react'
 
-export default function CreateClass({ user, token, ClassmodalVisible, setClassModalVisible }) {
+export default function CreateClass({ user, makeRequest, setMakeRequest, token, ClassmodalVisible, setClassModalVisible }) {
     const [title, onChangeTitle] = useState('');
     const [code, onChangeCode] = useState('');
     const [totalStudents, onChangeTotalStudents] = useState('');
@@ -25,7 +25,8 @@ export default function CreateClass({ user, token, ClassmodalVisible, setClassMo
                 ToastAndroid.SHORT,
                 ToastAndroid.CENTER
             );
-            DevSettings.reload()
+            setMakeRequest(!makeRequest)
+            setClassModalVisible(false)
 
         }
     }

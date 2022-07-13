@@ -19,6 +19,7 @@ export default function HomeScreen({ navigation }) {
     const [RegistermodalVisible, setRegisterModalVisible] = useState(false);
     const [ClassmodalVisible, setClassModalVisible] = useState(false);
     const [user, setuser] = useState({});
+    const [makeRequest, setMakeRequest] = useState(false);
 
 
     function requestHandler(result) {
@@ -65,6 +66,12 @@ export default function HomeScreen({ navigation }) {
         IsUserLoggedIn();
     }, [])
 
+    useEffect(() => {
+        if (loginToken !== '') {
+            getUserCouses(loginToken)
+        }
+    }, [makeRequest])
+
     const logoutHandler = async (result) => {
         if(result.message !== null){
             await AsyncStorage.removeItem('token')
@@ -104,7 +111,7 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.container}>
             {/* <Login LoginmodalVisible={LoginmodalVisible} setLoginModalVisible={setLoginModalVisible} /> */}
             <Register RegistermodalVisible={RegistermodalVisible} setRegisterModalVisible={setRegisterModalVisible} />
-            <CreateClass user={user} token={loginToken} ClassmodalVisible={ClassmodalVisible} setClassModalVisible={setClassModalVisible} />
+            <CreateClass user={user} makeRequest={makeRequest} setMakeRequest={setMakeRequest} token={loginToken} ClassmodalVisible={ClassmodalVisible} setClassModalVisible={setClassModalVisible} />
             <View style={styles.header}>
                 {
                     (isLoggedIn == false) ?
